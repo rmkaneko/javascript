@@ -1,10 +1,20 @@
-function calcularImc(peso, altura){
-    if((peso !== undefined && altura !== undefined) && typeof peso === "number" && typeof altura === "number" ){
-        return (peso/(altura**2))
+function calcularImc(peso, altura, classificarImc){
+//    if((peso !== undefined && altura !== undefined) && typeof peso === "number" && typeof altura === "number" ){
+    if(peso == undefined || altura == undefined){
+        throw Error("Need to parameters: weight and heigth")
     }
-    throw Error("Need to parameters: weight and heigth")
+    if(arguments.length == 2){
+        return (peso/(altura**2)) 
+    }
+    
+    if(typeof classificarImc === "function"){
+        return (classificarImc(peso/(altura**2)))
+    } 
+    
+    //console.log(peso, altura, typeof peso, typeof altura)
 }
-console.log(calcularImc(63, 1.65))
+console.log(calcularImc(63, 1.65, classificaImc))
+//console.log(calcularImc(63, 1.65))
 
 function classificaImc(imc){
     if(typeof imc !== "number" && imc === undefined){
@@ -27,4 +37,4 @@ function classificaImc(imc){
     }
 }
 
-console.log(classificaImc(calcularImc(62,1.65)))
+//console.log(classificaImc(calcularImc(62,1.65)))
